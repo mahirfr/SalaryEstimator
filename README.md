@@ -1,5 +1,7 @@
 # SALARY ESTIMATOR
-#### Video Demo:  <URL https://youtu.be/F4wNGVRvPBk>
+
+[Video Demo](https://youtu.be/F4wNGVRvPBk)
+
 #### Description:
 This is a niche project designed to help temporary workes (in France) calculate their salary.
 The reasons for why it was made are explained in a youtube video for which the url is just above.
