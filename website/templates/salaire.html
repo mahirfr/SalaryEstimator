@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Salaire
+{% endblock %}
+
+{% block main %}
+    <h1 class="m-5">Salaire brut estimé</h1>
+    <h3 class="mb-5">{{ '%0.2f' % salary | float }} €</h3>
+    <p><strong>Hrs normales: </strong>{{ regular }}</p>
+    <br>
+    <p><strong>Hrs supp payées à 125%: </strong>{{ supp_125 }}</p>
+    <br>
+    <p><strong>Hrs supp payées à 150%: </strong>{{ supp_150 }}</p>
+    <br>
+    <p><strong>Indemnités de fin de mission:</strong> {{ '%0.2f' % ifm | float }} €</p>
+    <br>
+    <p><strong>Indemnités congés payés: </strong>{{ '%0.2f' % icp | float }} €</p>
+
+{% endblock %}

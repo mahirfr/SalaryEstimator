@@ -1,0 +1,1 @@
+REGIONS = ["Lorraine", "Alsace", "Autre"]

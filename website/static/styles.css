@@ -1,0 +1,29 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: 1.5rem;
+    margin-left: 1rem;
+}
+
+.form-width {
+    width: 226px;
+}
+
+.heures {
+    margin: 1rem;
+}
+
+.paniers {
+    margin: 1rem;
+}
+
+.t-data {
+    font-weight: 600;
+    line-height: 1rem;
+}
+
+footer {
+    position: fixed !important;
+    width: 100%;
+    bottom: 0;
+}

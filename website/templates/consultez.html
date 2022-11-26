@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Modifier
+{% endblock %}
+
+{% block main %}
+    <h1>Modifier</h1>
+
+    <div class="container">
+        <table id="data" class="table table-hover table-striped table-light mt-3 mb-5">
+            <thead>
+            <tr>
+                <th scope="col">Jour</th>
+                <th scope="col">Heures</th>
+                <th scope="col">Zone</th>
+                <th scope="col">Km</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td>
+                        <p class="t-data">{{ row.date }}</p>
+                    </td>
+                    <td>
+                        <p class="t-data">{{ row.hours }} h</p>
+                    </td>
+                    <td>
+                        <p class="t-data">{{ '%0.2f' % row.price | float }} €</p>
+                    </td>
+                    <td>
+                        <p class="t-data">{{ row.km }} km</p>
+                    </td>
+                    <td>
+                        <form action="/consultez" method="post">
+                            <div class="mb-3">
+                                <input type="hidden" name="suppr" value="{{ row.id }}">
+                                <button class="btn btn-dark" type="submit">Suppr</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- JS table from https://github.com/miguelgrinberg/flask-tables -->
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.js"></script>
+
+    <script>
+        $(document).ready(function () {
+          $('#data').DataTable({
+            "language": {
+                "lengthMenu":     "Afficher _MENU_ resultats",
+                "emptyTable":     "Aucune donnée disponible dans le tableau",
+                "search":         "Cherchez une date:",
+                "zeroRecords":    "Aucun enregistrement correspondant trouvé",
+                "info":           "Montrant _START_ à _END_ de _TOTAL_ resultats",
+                "infoEmpty":      "Montrant 0 à 0 de 0 resultats",
+                "loadingRecords": "Chargement...",
+                "paginate": {
+                    "first":      "Premier",
+                    "last":       "Dernier",
+                    "next":       "Prochain",
+                    "previous":   "Précédent"
+                }
+            },
+            columns: [
+              null,
+              {orderable: false, searchable: false},
+              {orderable: false, searchable: false},
+              {orderable: false, searchable: false},
+              {orderable: false, searchable: false}],   
+          });
+          
+        });
+      </script>
+
+{% endblock %}

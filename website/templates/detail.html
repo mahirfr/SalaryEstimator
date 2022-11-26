@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Détaillée
+{% endblock %}
+
+{% block main %}
+    <h1 class="m-4">Estimez votre salaire</h1>    
+    <a class="btn btn-primary " href="/" role="button">Simple estimation</a>
+    <div class="container">
+        <form action="/detail" method="POST">
+            <br>    
+            <input type="date" name="date" min="2022-01-01" max="2022-12-31" class="form-control mx-auto form-width mb-4" required>
+
+            <input class="form-control mx-auto form-width m-4" type="number" step="any" min="0" max="12" name="hours" autofocus autocomplete="off" placeholder="Heures travaillées" required>
+            
+            <select class="form-select mx-auto form-width mt-2" name="zone" id="zone" required>
+                <option selected disabled value="none">Entrez une zone</option>
+                <option value="10">Entre 5 et 10km</option>
+                <option value="20">Entre 10 et 20km</option>
+                <option value="30">Entre 20 et 30km</option>
+                <option value="40">Entre 30 et 40km</option>
+                <option value="50">Entre 40 et 50km</option>
+                <option value="60">Entre 50 et 60km</option>
+                <option value="70">Entre 60 et 70km</option>
+            </select>        
+            <br>
+            <button type="submit" class="btn btn-dark mb-5 mt-2">Ajouter</button>
+        </form>
+        <table class="table table-hover table-striped table-light mb-5">
+            <thead>
+              <tr>
+                <th scope="col">Mois</th>
+                <th scope="col">Heures</th>
+                <th scope="col">IFM</th>
+                <th scope="col">ICP</th>
+                <th scope="col">Paie</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for process in processed %}
+                <tr>
+                    <td>
+                        <p class="t-data">{{ process.month }}</p>
+                    </td>
+                    <td>
+                            {% for hours in process.monthly_hours %}
+                                <p class="t-data">100%: {{ hours.monthly_reg }} h</p> 
+                                <p class="t-data">125%: {{ hours.monthly_125 }} h</p>
+                                <p class="t-data">150%: {{ hours.monthly_150 }} h</p>
+                                <p class="t-data">Total: {{ hours.monthly_total_hrs }} h</p>
+                            {% endfor %}
+                    </td>
+                    <td>
+                        <p class="t-data">{{ '%0.2f' % process.ifm | float }} €</p>
+                    </td>
+                    <td>
+                        <p class="t-data">{{ '%0.2f' % process.icp | float }} €</p>
+                    </td>
+                    <td>
+                        <p class="t-data">{{ '%0.2f' % process.monthly_pay | float }} €</p>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    
+    </div>
+    
+{% endblock %}

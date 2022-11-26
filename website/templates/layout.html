@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+
+        <!-- bootstrap table -->
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.20.2/dist/bootstrap-table.min.css">
+
+        <!-- http://getbootstrap.com/docs/5.1/ -->
+        <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+        <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"></script>
+
+        <!-- Font awsome icons -->
+        <script src="https://kit.fontawesome.com/4e0c58162e.js" crossorigin="anonymous"></script>
+
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <title>Estime mon salaire: {% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+
+        <nav class="bg-light border navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/"><i class="fa-solid fa-calculator" style="color: #0b5ed7;"></i></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    {% if user.is_authenticated %}
+                        <ul class="navbar-nav mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/">Calculatrice</a></li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/consultez">Consultez</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/detail">Detail</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/deconnexion">Se déconnecter</a></li>
+                        </ul>
+                    {% else %}
+                        <ul class="navbar-nav  mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/">Calculatrice</a></li>
+                        </ul>
+                        <ul class="navbar-nav ms-auto mt-2">
+                            <li class="nav-item"><a class="nav-link" href="/inscription">S'inscrire</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/connexion">Connexion</a></li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category == "error" %}
+                        <div class="alert alert-danger alter-dismissable mb-0 text-center" role="alert">
+                        {{ message }} 
+                        </div>
+                        
+                    {% else %}
+                        <div class="alert alert-success alter-dismissable mb-0 text-center" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <main class="container-fluid py-5 text-center">
+            {% block main %}{% endblock %}
+        </main>
+   
+    </body>
+    
+    <footer class="bg-dark text-center">
+        <!-- Copyright -->
+        <div class="text-center text-light p-3">
+          © 2022 Copyright: Estime mon salaire
+        </div>
+        <!-- Copyright -->
+    </footer>
+    
+</html>

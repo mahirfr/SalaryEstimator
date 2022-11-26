@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+    <form action="/profile" method="POST">
+        <div class="form-group">
+            <label class="m-2" for="rate">Entrez votre taux horaire brut (figurant sur votre contrat)</label>
+            <input class="form-control mx-auto w-auto m-2" type="number" step="any" name="rate" placeholder="Taux horaire" value="{{ user.hourly_rate }}">
+        </div>
+        <div class="form-group">
+            <label class="m-2" for="meal">Votre indemnité panier imposable (figurant sur votre contrat)</label>
+            <input class="form-control mx-auto w-auto m-2" type="number" step="any" name="meal" placeholder="Valeur panier" min="0" max="2" value="{{ user.meal }}">
+        </div>
+        <div class="form-group">
+            <label class="m-2" for="region">Choisissez votre region</label>
+            <select class="form-select mx-auto w-auto m-2" name="region" id="region">
+                <option selected value="{{ user.region }}">{{ user.region }}</option>
+                {% for region in regions %}
+                <option value="{{ region }}">{{ region }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="m-2" for="zone">Entrez vos indemnités de trajets selon zone (figurant sur votre contrat)</label><br>
+            <label class="m-2" for="10">De 0 à 10km</label>
+            <input class="form-control mx-auto w-auto m-2" type="number" step="any" name="10" value="1.35" required>
+            <label class="m-2" for="20">De 10 à 20km</label>
+            <input class="form-control mx-auto w-auto m-2" type="number" step="any" name="20" value="2.74" required>
+            <label class="m-2" for="30">De 20 à 30km</label>
+            <input class="form-control mx-auto w-auto m-2" type="number" step="any" name="30" value="4.06" required>
+            <label class="m-2" for="40">De 30 à 40km</label>
+            <input class="form-control mx-auto w-auto m-2" type="number" step="any" name="40" value="5.45" required>
+            <label class="m-2" for="50">De 40 à 50km</label>
+            <input class="form-control mx-auto w-auto m-2" type="number" step="any" name="50" value="6.86" required>
+            <label class="m-2" for="60">De 50 à 60km</label>
+            <input class="form-control mx-auto w-auto m-2" type="number" step="any" name="60" value="6.86" required>
+            <label class="m-2" for="70">De 60 à 70km</label>
+            <input class="form-control mx-auto w-auto m-2" type="number" step="any" name="70" value="6.86" required>
+        </div>
+        <button class="btn btn-primary m-2 mb-5" type="submit">Appliquer</button> 
+    </form>
+{% endblock %}

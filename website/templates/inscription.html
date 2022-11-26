@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Inscription
+{% endblock %}
+
+{% block main %}
+    <h1 class="m-3">Inscription</h1>
+    <form action="/inscription" method="POST">
+        <div class="mb-3">
+            <label class="m-2" for="email">Votre adresse mail</label>
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="email" name="email" placeholder="Adresse mail" type="email">
+        </div>
+        <div class="mb-3">
+            <label class="m-2" for="mdp">Votre mot de passe</label>
+            <input class="form-control mx-auto w-auto" id="mdp" name="mdp" placeholder="Mot de passe" type="password">
+        </div>
+        <div class="mb-3">
+            <label class="m-2" for="confirmation">Confirmez le mot de passe</label>
+            <input class="form-control mx-auto w-auto" id="confirmation" name="confirmation" placeholder="Confirmez le mot de passe" type="password">
+        </div>
+        <button class="btn btn-primary" type="submit">S'inscrire</button>
+    </form>
+{% endblock %}
